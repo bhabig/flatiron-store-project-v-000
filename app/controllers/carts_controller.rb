@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
   before_action :user_signed_in?
   before_action :set_user
-  
+
   def show
 
   end
@@ -14,7 +14,5 @@ class CartsController < ApplicationController
 
   private
 
-  def set_user
-    @user = current_user
-  end
+  
 end

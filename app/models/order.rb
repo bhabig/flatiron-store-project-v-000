@@ -3,5 +3,9 @@ class Order < ActiveRecord::Base
   has_many :carts
   has_many :items, through: :carts
 
-  
+  before_initialize :check_for_open_orders
+
+  def check_for_open_orders
+    binding.pry
+  end
 end
