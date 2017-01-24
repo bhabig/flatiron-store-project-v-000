@@ -1,8 +1,9 @@
 class Cart < ActiveRecord::Base
   has_many :line_items
   has_many :items, through: :line_items
-
   belongs_to :user
+
+  validates_uniqueness_of :id
 
   def total
     self.line_items.map do |line_item|
@@ -12,7 +13,8 @@ class Cart < ActiveRecord::Base
   end
 
   def add_item(item_id)
-    LineItem.where(:item_id => item_id, :cart_id => self.id).first_or_initialize
+    l = LineItem.where(:item_id => item_id, :cart_id => self.id).first_or_initialize
+    self.line_items << l
   end
 
   def checkout

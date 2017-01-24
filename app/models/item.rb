@@ -6,4 +6,8 @@ class Item < ActiveRecord::Base
     where("inventory > 0")
   end
 
+  def display_price
+    self.price/100
+  end
+  
 end
