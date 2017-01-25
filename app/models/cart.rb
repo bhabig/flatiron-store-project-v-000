@@ -13,8 +13,13 @@ class Cart < ActiveRecord::Base
   end
 
   def add_item(item_id)
-    l = LineItem.where(:item_id => item_id, :cart_id => self.id).first_or_initialize
-    self.line_items << l
+    line_item = self.line_items.find_by_id(item_id)
+    if line_item
+      line_item.quantity += 1
+    else
+      line_item = self.line_items.new(item_id: item_id)
+    end
+    line_item
   end
 
   def checkout

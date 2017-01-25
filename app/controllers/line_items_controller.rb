@@ -3,23 +3,16 @@ class LineItemsController < ApplicationController
   before_action :check_logged_in?
 
   def create
-    if !current_user.current_cart
-      current_user.current_cart = Cart.new(user_id: current_user.id)
-      current_user.current_cart.save
-      current_user.current_cart.add_item(params[:item_id])
+    current_user.current_cart = Cart.create(user_id: current_user.id) unless current_user.current_cart
+    line_item = current_user.current_cart.add_item(params[:item_id])
+    if line_item.save
+      redirect_to cart_path(current_user.current_cart)
     else
-      current_user.current_cart.add_item(params[:item_id])
-      current_user.current_cart.save
+      redirect_to root_path
     end
-    redirect_to cart_path(current_user.current_cart)
   end
 
   def destroy
   end
 
-  private
-
-  def line_item_params
-    params.require(:line_item).permit(:cart_id, :item_id, :quantity)
-  end
 end
