@@ -2,12 +2,12 @@
     <ul>
         <li> <%= link_to "Store Home", store_path %> </li>
         <li><%= link_to("Sign Up", new_user_registration_path) %></li>
-        <% if user_signed_in? %>
-        <%= "Signed in as #{current_user.email}" %>
-        <li><%= link_to("Sign out", destroy_user_session_path, :method => "delete") %></li>
+        <% if !user_signed_in? %>
+        <li> <%= link_to("sign in", new_user_session_path) %></li>
 
         <% else %>
-        <li> <%= link_to("Sign in", new_user_session_path) %></li>
+        <%= "Signed in as #{current_user.email}" %>
+        <li><%= link_to("Sign out", destroy_user_session_path, :method => "delete") %></li>
 
         <% end %>
         <% if !!@current_cart %>
