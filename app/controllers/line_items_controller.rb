@@ -4,6 +4,7 @@ class LineItemsController < ApplicationController
   before_action :alias_to
 
   def create
+    
     @current_cart = Cart.create(user_id: current_user.id) unless @current_cart
     @user.current_cart_id = @current_cart.id
     @user.save #avoids changing multiple arguments already set as '@current_cart'

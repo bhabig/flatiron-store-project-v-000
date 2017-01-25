@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def alias_to
-    @current_cart = @user.current_cart unless !@user
+    @current_cart = current_user.current_cart unless !current_user
   end
 end
