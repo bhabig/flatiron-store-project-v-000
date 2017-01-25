@@ -5,8 +5,12 @@
     <li><%= link_to item.title, item_path(item) %></li>
     <%= "$#{(item.price.to_f)/100}" %>
     <% if user_signed_in? %>
-    <%= current_user.name %>
-    <%= end %>
+      <%=form_tag(controller: "line_items", action: "create") do %>
+        <%= hidden_field_tag :item_id %>
+        <%= submit_tag "Add to Cart" %>
+      <% end %>
+    <% end %>
 
 <% end %>
+
 </ul>
