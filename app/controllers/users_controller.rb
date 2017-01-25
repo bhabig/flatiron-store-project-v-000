@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.delete
+    redirect_to "/"
   end
 
   private

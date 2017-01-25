@@ -3,5 +3,10 @@
 <ul>
 <% @category.items.each do |item| %>
     <li><%= link_to item.title, item_path(item) %></li>
+    <%= "$#{(item.price.to_f)/100}" %>
+    <% if user_signed_in? %>
+    <%= current_user.name %>
+    <%= end %>
+
 <% end %>
 </ul>
