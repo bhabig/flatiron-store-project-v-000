@@ -2,7 +2,9 @@
 
 <ul>
 <% @category.items.each do |item| %>
+  <% if item.inventory >0 %>
     <li><%= link_to item.title, item_path(item) %></li>
+    <%= item.inventory %>
     <%= "$#{(item.price.to_f)/100}" %>
     <% if user_signed_in? %>
       <%=form_tag(controller: "line_items", action: "create") do %>
@@ -10,7 +12,7 @@
         <%= submit_tag "Add to Cart" %>
       <% end %>
     <% end %>
-
+  <% end %>
 <% end %>
 
 </ul>
