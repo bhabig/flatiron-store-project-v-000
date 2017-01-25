@@ -28,12 +28,16 @@ class Cart < ActiveRecord::Base
     end.sum
   end
 
+  # def add_item(item_id)
+  #   line_item = LineItem.where(:item_id => item_id, :cart_id => self.id).first_or_initialize
+  # end
+
   def add_item(item_id)
     line_item = self.line_items.find_by_id(item_id)
     if line_item
       line_item.quantity += 1
     else
-      line_item = self.line_items.new(item_id: item_id)
+      line_item = self.line_items.new(item_id: item_id, cart_id: self.id)
     end
     line_item
   end
