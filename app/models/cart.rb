@@ -22,8 +22,21 @@ class Cart < ActiveRecord::Base
     line_item
   end
 
+  def inventory_after_checkout
+    self.line_items.each do |li|
+      item = Item.find_by(id: li.item_id)
+      if item
+        item.amount_sold(li.quantity)
+      end
+    end
+  end
+
   def checkout
-    self.status = true if self.status != true
+    if self.status != true
+      self.status = true
+    else
+      return "Order has already been placed. Can't place again."
+    end
   end
 
   def cart_status
