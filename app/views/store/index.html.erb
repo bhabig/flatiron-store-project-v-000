@@ -4,6 +4,8 @@
 <% end %>
 
 <% @items.each do |item| %>
-  <p><%= item.title %> | <%= number_to_currency(item.display_price) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item.id) %></p>
-  
+  <p><%= item.title %> | <%= number_to_currency(item.display_price) %> | 
+  <% if current_user %>
+    <%= button_to 'Add to Cart', line_items_path(item_id: item.id) %></p>
+  <% end %>
 <% end %>
