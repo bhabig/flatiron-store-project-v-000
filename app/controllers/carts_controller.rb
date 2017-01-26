@@ -1,10 +1,10 @@
 class CartsController < ApplicationController
   before_action :user_signed_in?
   before_action :set_user
+  before_action :alias_to
 
   def show
     @current_cart = @user.carts.last
-    
   end
 
   def checkout
