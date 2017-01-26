@@ -8,7 +8,7 @@
     <li><%= link_to item.title, item_path(item) %></li>
     <br />
     <%= item.inventory %>
-    <%= "$#{(item.price.to_f)/100}" %>
+    $<%= item.display_price %>
     <% if user_signed_in? %>
       <%=form_tag(controller: "line_items", action: "create") do %>
         <%= hidden_field_tag :item_id %>
