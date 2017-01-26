@@ -37,7 +37,7 @@ class Cart < ActiveRecord::Base
     if line_item
       line_item.quantity += 1
     else
-      line_item = self.line_items.new(item_id: item_id, cart_id: self.id)
+      line_item = self.line_items.build(item_id: item_id, cart_id: self.id) #apparently .build is the method to use when initializing while AR association chaining
     end
     line_item
   end
