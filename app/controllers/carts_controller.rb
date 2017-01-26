@@ -2,10 +2,6 @@ class CartsController < ApplicationController
   before_action :user_signed_in?
   before_action :set_user
 
-  def create
-
-  end
-
   def show
     @current_cart = @user.carts.last
   end
