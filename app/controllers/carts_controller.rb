@@ -4,7 +4,7 @@ class CartsController < ApplicationController
 
   def show
     @current_cart = @user.carts.last
-    @inventory = LineItem.where("inventory < 5")
+    
   end
 
   def checkout
