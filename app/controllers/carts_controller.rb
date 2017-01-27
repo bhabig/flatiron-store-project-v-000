@@ -3,6 +3,10 @@ class CartsController < ApplicationController
   before_action :set_user
   before_action :alias_to
 
+  def index
+    @carts = current_user.carts
+  end
+
   def show
     @current_cart = @user.carts.last
   end

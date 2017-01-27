@@ -1,0 +1,12 @@
+<h1>Past Purchases:</h1>
+<% @carts.each do |cart| %>
+  <% if cart.status == true %>
+    <h3>PLACED: <%= cart.updated_at.strftime("%A, %B %d, %Y at %I:%M %p") %></h3>
+    <strong><p>TOTAL: $<%= cart.total.to_f/100 %></p></strong>
+    <% cart.items.each do |item| %>
+
+      <li><%= item.title %> ($<%= item.display_price %>)</li>
+
+    <% end %></br>
+  <% end %>
+<% end %>

@@ -8,8 +8,8 @@
 
         <% else %>
         <%= "Signed in as #{current_user.email}" %>
+        <li><%= link_to "Past Orders", carts_path %></li>
         <li><%= link_to("Sign out", destroy_user_session_path, :method => "delete") %></li>
-
         <% end %>
         <% if !!@current_cart %>
           <li> <%= link_to "Cart", cart_path(@current_cart) %></li>
