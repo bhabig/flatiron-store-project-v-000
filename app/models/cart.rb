@@ -47,4 +47,10 @@ class Cart < ActiveRecord::Base
     end
   end
 
+  def self.find_current_cart(cc)
+    user = User.find_by(id: cc)
+    oc = user.carts.find{|c| c.status == false} if !user.carts.empty?
+    oc ? oc : nil
+  end
+
 end
