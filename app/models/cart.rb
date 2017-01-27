@@ -38,15 +38,10 @@ class Cart < ActiveRecord::Base
       return "Order has already been placed. Can't place again."
     end
   end
-
+  
   def cart_status
-    if self.status == true
-      "submitted"
-    else
-      "unsubmitted"
-    end
+    self.status ? "submitted" : "unsubmitted"
   end
-
   def self.find_current_cart(cc)
     user = User.find_by(id: cc)
     oc = user.carts.find{|c| c.status == false} if !user.carts.empty?
