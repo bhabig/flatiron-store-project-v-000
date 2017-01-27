@@ -7,7 +7,7 @@
   <% if item.inventory >0 %>
     <li><%= link_to item.title, item_path(item) %></li>
     <br />
-    <%= item.inventory %>
+    
     $<%= item.display_price %>
     <% if user_signed_in? %>
       <%=form_tag(controller: "line_items", action: "create") do %>
